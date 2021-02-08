@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- las siguientes lineas son para agregar Bootstrap de manera online -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        
+        <!-- para usar font awesome inline-->
+        <script src="https://use.fontawesome.com/ef22b1a80e.js"></script>
+
+        <!-- para usar bootstrap localmente -->
+        <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+        <!-- <script src="bootstrap.bundle.min.js"></script> -->
+        
+        <!-- para usar fontawesome localmente-->
+        <!-- <link rel="stylesheet" href="all.min.css"> -->
+        <!-- <script src="all.min.js"></script> -->
+        
+        
+        <!--linkeo al achivo css-->
+        <link href="styles.css" rel="stylesheet">
+
+
+        <!-- para que en celulares no se vea demasiado chico-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script rel="javascript">
+
+          document.addEventListener('DOMContentLoaded', comienzo);
+
+          function comienzo()
+          {
+            
+            nombreFoto = document.getElementsByClassName("nombreFoto");
+            for(var i = 0; i < nombreFoto.length; i++){
+              nombreFoto.item(i).addEventListener("click", mostrarNombreFoto);
+            }
+            
+
+            boton = document.getElementById("btnTaTeTi");
+            tatetiDiv = document.getElementById("tatetiDiv");
+            tatetiDiv.style.display = "none";
+            
+            
+            boton.addEventListener("click", function(){
+              tatetiDiv.style.display = "inline";
+              boton.remove();
+             
+              
+              // casillero = document.getElementsById("tablaTateti").getElementsByTagName("button");
+              casilleros = document.getElementById("tablaTateti").getElementsByTagName("td");
+
+            
+              for(var i=0; i< casilleros.length; i++){
+              casilleros.item(i).addEventListener("click", marcar);
+              }
+              
+            }                    
+            )
+          }
+
+
+          function mostrarNombreFoto(){
+              fotoTarjeta = document.getElementsByClassName("fotoOculta").item(0);
+              fotoTarjeta.style.visibility = "visible";
+              fotoTarjeta.addEventListener("click", function(){
+                this.style.visibility = "hidden";
+              })
+              
+            }
+
+          var marcador = 0;
+          //este marcador va a ir alternando entre 0 y 1 según sea el turno de X o de O...
+          var gameover = 0;
+
+          function marcar(ev){
+            
+              if (marcador == 9 || gameover == 1){
+              // alert("the game is over");
+              reset();
+              return 0;
+            } else if (ev.target.innerHTML != "")
+            {
+              // alert("that place is already taken");
+              return 0;
+            }else if(marcador % 2 == 0){
+                ev.target.innerHTML =  "X";
+                marcador++;
+                check(ev);           
+            }
+            else{
+              ev.target.innerHTML =  "O";
+              marcador++;
+              check(ev);
+            }
+      
+          }
+
+          function check(ev){
+
+            c1 = casilleros.item(0);
+            c2 = casilleros.item(1);
+            c3 = casilleros.item(2);
+            c4 = casilleros.item(3);
+            c5 = casilleros.item(4);
+            c6 = casilleros.item(5);
+            c7 = casilleros.item(6);
+            c8 = casilleros.item(7);
+            c9 = casilleros.item(8);
+            
+       
+
+            if (c1.innerHTML == c2.innerHTML && c2.innerHTML == c3.innerHTML && c1.innerHTML != ""){
+                          
+                c1.style.backgroundColor='green';
+                c2.style.backgroundColor='green';
+                c3.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c4.innerHTML == c5.innerHTML && c5.innerHTML == c6.innerHTML && c4.innerHTML != ""){
+                          
+                c4.style.backgroundColor='green';
+                c5.style.backgroundColor='green';
+                c6.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c7.innerHTML == c8.innerHTML && c8.innerHTML == c9.innerHTML && c7.innerHTML != ""){
+                          
+                c7.style.backgroundColor='green';
+                c8.style.backgroundColor='green';
+                c9.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c1.innerHTML == c5.innerHTML && c5.innerHTML == c9.innerHTML && c1.innerHTML != ""){
+                          
+                c1.style.backgroundColor='green';
+                c5.style.backgroundColor='green';
+                c9.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c3.innerHTML == c5.innerHTML && c5.innerHTML == c7.innerHTML && c3.innerHTML != ""){
+                          
+                c3.style.backgroundColor='green';
+                c5.style.backgroundColor='green';
+                c7.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c1.innerHTML == c4.innerHTML && c4.innerHTML == c7.innerHTML && c1.innerHTML != ""){
+                          
+                c1.style.backgroundColor='green';
+                c4.style.backgroundColor='green';
+                c7.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c2.innerHTML == c5.innerHTML && c5.innerHTML == c8.innerHTML && c2.innerHTML != ""){
+                          
+                c2.style.backgroundColor='green';
+                c5.style.backgroundColor='green';
+                c8.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }            
+            
+            if (c3.innerHTML == c6.innerHTML && c6.innerHTML == c9.innerHTML && c3.innerHTML != ""){
+                          
+                c3.style.backgroundColor='green';
+                c6.style.backgroundColor='green';
+                c9.style.backgroundColor='green';
+                
+                // alert("ganaron las " + ev.target.innerHTML);
+                gameover = 1;
+            }
+
+
+            
+          }
+
+          function reset(){
+            for (var i = 0; i < 9; i++){
+              casilleros.item(i).innerHTML = "";
+              casilleros.item(i).style.backgroundColor = 'black';
+              
+            }
+            marcador = 0;
+            gameover = 0;
+
+          }
+
+        </script>
+        
+        <title>My Webpage</title>
+    </head>
+    <body>
+      <main class="container-fluid bg-light">
+
+      
+        <div class="p-5 rounded text-center">
+          <h1>Welcome to my first Webpage</h1>
+          <p class="lead">You´ll learn some things about me and, hopefully, have some fun!</p>
+        </div>
+        
+        <div class="rounded mt-3">
+          <div class="row">
+                <div class="container-fluid text-center">
+                <a class="btn btn-lg btn-primary" href="#" role="button" id="btnTaTeTi">Play tic tac toe &raquo;</a>
+              </div>
+            </div>
+              
+
+              <div class="row" id="tatetiDiv">
+              
+                <table id="tablaTateti" class="tabla">
+                <tr>
+                  <td id="casillero1"></td>
+                  <td id="casillero2"></td>
+                  <td id="casillero3"></td>
+                </tr>
+                <tr>
+                  <td id="casillero4"></td>
+                  <td id="casillero5"></td>
+                  <td id="casillero6"></td>
+                </tr>
+                <tr>
+                  <td id="casillero7"></td>
+                  <td id="casillero8"></td>
+                  <td id="casillero9"></td>
+                </tr>
+                </table>
+              
+            </div>
+            
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="container-fluid fotoOculta">
+         
+            <div class="card">
+              <div class="card-header"></div>
+              <span class="m-2 text-center"><img class="img-thumbnail" src="/images/logo_mini.jpg" alt=""></span>
+              <div class="card-body text-center">
+                <h5 class="card-title">Nicolás Cirio</h5>
+                <!-- <p class="card-text"> -->
+                  <ul class="listaMiniCv">
+                    <li>34 years old.</li>
+                    <li>Married with Belu.</li>
+                    <li>Father of Pili and Joaco.</li>
+                  </ul>
+                <!-- </p> -->
+              </div>
+            </div>
+          
+        </div>
+      </main>
+      
+      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+                    
+          <span class="mr-2 nombreFoto"><img class="img-thumbnail" src="/images/logo_mini.jpg" alt="" height="50" width="50"></span>
+          <a class="navbar-brand nombreFoto" href="#">Nicolás Cirio</a>
+          
+          <a href="https://www.instagram.com/nicocirio/" class="mr-2"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.facebook.com/nicocirio" class="mr-2"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.twitter.com/nicocirio" class="mr-2"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/nicol%C3%A1s-cirio-94966119/" class="mr-2"><i class="fa fa-linkedin"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <b><a class="nav-link" aria-current="page" href="index.html">Home</a></b>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="family.html">Family</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="studies.html">Studies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="hobbies.html">Hobbies</a>
+              </li>
+              <li class="nav-item dropup">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-bs-toggle="dropdown" aria-expanded="false">Other links</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown10">
+                  <li><a class="dropdown-item" href="https://getbootstrap.com/">Bootstrap</a></li>
+                  <li><a class="dropdown-item" href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+                  <li><a class="dropdown-item" href="https://fontawesome.com/">Font Awesome</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      
+      
+            
+        
+    </body>
+     
+</html>

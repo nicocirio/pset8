@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- las siguientes lineas son para agregar Bootstrap de manera online -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        
+        <!-- para usar font awesome inline-->
+        <script src="https://use.fontawesome.com/ef22b1a80e.js"></script>
+
+        <!-- para usar bootstrap localmente -->
+        <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+        <!-- <script src="bootstrap.bundle.min.js"></script> -->
+        
+        <!-- para usar fontawesome localmente-->
+        <!-- <link rel="stylesheet" href="all.min.css"> -->
+        <!-- <script src="all.min.js"></script> -->
+        
+        
+        <!--linkeo al achivo css-->
+        <link href="styles.css" rel="stylesheet">
+
+        <!-- para que en celulares no se vea demasiado chico-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script rel="javascript">
+
+          document.addEventListener('DOMContentLoaded', comienzo);
+
+          function comienzo(){
+            carruseles =  document.getElementsByClassName("carousel-inner");
+            // contenedorFoto = document.getElementById("contenedorFoto");
+            // contenedorFoto.addEventListener("click", esconderFoto);
+            
+          nombreFoto = document.getElementsByClassName("nombreFoto");
+          for(var i = 0; i < nombreFoto.length; i++){
+          nombreFoto.item(i).addEventListener("click", mostrarNombreFoto);
+          }
+
+            
+            for(var i=0; i < carruseles.length; i++){
+              carruseles.item(i).addEventListener("click", function(){
+              carruselClickeado = this.parentElement.id;
+              // alert(carruselClickeado);
+              mostrarFoto(carruselClickeado);
+              
+            })
+
+            }
+          }
+
+          document.addEventListener("backbutton", esconderFoto);
+
+          function esconderFoto(){
+            document.getElementById("nuevoNodo").remove();
+
+            
+          }
+
+          function mostrarFoto(carruselClickeado){
+            
+            var copiaEnMemoria = document.getElementById(carruselClickeado).cloneNode(true);
+            copiaEnMemoria.id = "nuevoNodo";
+           
+            document.body.appendChild(copiaEnMemoria);
+
+            copiaCarrusel = document.getElementById("nuevoNodo");
+            
+            copiaCarrusel.classList.remove("mt-2");
+
+            imagenes = copiaCarrusel.getElementsByTagName('img');
+            for(var i = 0; i < imagenes.length; i++){
+              imagenes.item(i).classList.add("imgCar");
+              imagenes.item(i).classList.remove("imageCarouselCard");
+            }
+
+            itemCar = copiaCarrusel.getElementsByClassName('carousel-item');
+            for(var i = 0; i < itemCar.length; i++){
+              itemCar.item(i).classList.add("itemCar");
+            }
+
+            inner = copiaCarrusel.getElementsByClassName("carousel-inner").item(0);
+            inner.classList.add("innerCar");
+
+            copiaCarrusel.classList.add("contGralCar");
+
+            document.getElementById("nuevoNodo").getElementsByClassName("carousel-control-prev").item(0).attributes.href.value = "#nuevoNodo";
+            document.getElementById("nuevoNodo").getElementsByClassName("carousel-control-next").item(0).attributes.href.value = "#nuevoNodo";
+            
+            imagenesNodo = document.getElementById("nuevoNodo").getElementsByTagName('img');
+            
+            
+            for (var i = 0; i < imagenesNodo.length; i++){
+              imagenesNodo.item(i).addEventListener("click", esconderFoto)
+            }
+
+            document.addEventListener("keydown", function(ev){
+              if(ev.keyCode == '27'){
+                esconderFoto();              
+              }              
+            });     
+
+          }
+          
+          function mostrarNombreFoto(){
+              fotoTarjeta = document.getElementsByClassName("fotoOculta").item(0);
+              fotoTarjeta.style.visibility = "visible";
+              fotoTarjeta.addEventListener("click", function(){
+                this.style.visibility = "hidden";
+              })
+              
+            }
+
+        </script>
+       
+             
+        <title>My Webpage</title>
+    </head>
+    <body>
+          
+    
+
+      <main class="container-fluid bg-light">
+
+             
+        
+
+
+        <div class="rounded p-1 text-center">
+          <h1 class="mt-2">My Hobbies</h1>
+          <p class="lead">They keep me entertained...</p>
+        </div>
+        
+                    
+            
+        <div class="p-1 rounded mt-1 mb-5"> 
+
+          <div class="row row-cols-1 row-cols-md-3 g-1 mb-2">
+            
+            
+            <div class="col">
+              <div class="card">
+                <div id="carouselWood" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2500">
+                      <img src="images/w0.jpg" class="d-block imageCarouselCard" alt="w0">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w1.jpg" class="d-block imageCarouselCard" alt="w1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w2.jpg" class="d-block imageCarouselCard" alt="w2">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w3.jpg" class="d-block imageCarouselCard" alt="w3">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w4.jpg" class="d-block imageCarouselCard" alt="w4">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w5.jpg" class="d-block imageCarouselCard" alt="w5">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w6.jpg" class="d-block imageCarouselCard" alt="w6">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w7.jpg" class="d-block imageCarouselCard" alt="w7">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w8.jpg" class="d-block imageCarouselCard" alt="w8">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/w9.jpg" class="d-block imageCarouselCard" alt="w9">
+                    </div>
+                  </div>
+                  
+                  <a class="carousel-control-prev" href="#carouselWood" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselWood" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Wood & Welding</h5>
+                  <p class="card-text">I learnt some years ago, and now I make our own furniture!</p>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="col">
+              <div class="card">
+                <div id="carouselMusic" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2500">
+                      <img src="images/m0.jpg" class="d-block imageCarouselCard" alt="m0">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/m1.jpg" class="d-block imageCarouselCard" alt="m1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/m2.jpg" class="d-block imageCarouselCard" alt="m2">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/m3.jpg" class="d-block imageCarouselCard" alt="m3">
+                    </div>
+                   
+                  </div>
+                  
+                  <a class="carousel-control-prev" href="#carouselMusic" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselMusic" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Music</h5>
+                  <p class="card-text">I love to play the guitar and sing. With my brother and two friends we have a Folklore Band called "Los Labradores"!</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <div class="card">
+                <div id="carouselCooking" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2500">
+                      <img src="images/c0.jpg" class="d-block imageCarouselCard" alt="c0">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/c1.jpg" class="d-block imageCarouselCard" alt="c1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/c2.jpg" class="d-block imageCarouselCard" alt="c2">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/c3.jpg" class="d-block imageCarouselCard" alt="c3">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/c4.jpg" class="d-block imageCarouselCard" alt="c4">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/c5.jpg" class="d-block imageCarouselCard" alt="c5">
+                    </div>
+                   
+                  </div>
+                  
+                  <a class="carousel-control-prev" href="#carouselCooking" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselCooking" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Cooking</h5>
+                  <p class="card-text">I enjoy cooking for my friends & family! I love barbacues, and during 2020 y begun cooking bread.</p>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="col">
+              <div class="card">
+                <div id="carouselFishing" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2500">
+                      <img src="images/fish0.jpg" class="d-block imageCarouselCard" alt="fi0">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/fish1.jpg" class="d-block imageCarouselCard" alt="fi1">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/fish2.jpg" class="d-block imageCarouselCard" alt="fi2">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/fish3.jpg" class="d-block imageCarouselCard" alt="fi3">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/fish4.JPG" class="d-block imageCarouselCard" alt="fi4">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2500">
+                      <img src="images/fish5.JPG" class="d-block imageCarouselCard" alt=".">
+                    </div>
+                  </div>
+                  
+                  <a class="carousel-control-prev" href="#carouselFishing" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselFishing" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Fishing</h5>
+                  <p class="card-text">I love going fishing everywhere! At the river, sea or lakes...</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="card">
+                <div id="carouselBeer" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+          
+                  <div class="carousel-inner">
+                   <div class="carousel-item active " data-bs-interval="2500">
+                      <img src="images/cer0.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                    <div class="carousel-item " data-bs-interval="2500">
+                      <img src="images/cer1.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                    <div class="carousel-item " data-bs-interval="2500">
+                      <img src="images/cer2.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                    <div class="carousel-item " data-bs-interval="2500">
+                      <img src="images/cer3.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                    <div class="carousel-item " data-bs-interval="2500">
+                      <img src="images/cer4.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                    <div class="carousel-item " data-bs-interval="2500">
+                      <img src="images/cer5.jpg" class="d-block imageCarouselCard" alt="">
+                    </div>
+                  </div>
+                
+                  <a class="carousel-control-prev" href="#carouselBeer" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon borde" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselBeer" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon borde" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </a>
+                
+              </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Craft Brewing</h5>
+                  <p class="card-text text-center">With a friend we brew our own craft beer. Our brand is called "Cabrona", a tough beer.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      
+  
+        <div class="container-fluid fotoOculta">
+         
+          <div class="card">
+            <div class="card-header"></div>
+            <span class="m-2 text-center"><img class="img-thumbnail" src="/images/logo_mini.jpg" alt=""></span>
+            <div class="card-body text-center">
+              <h5 class="card-title">Nicolás Cirio</h5>
+              <!-- <p class="card-text"> -->
+                <ul class="listaMiniCv">
+                  <li>34 years old.</li>
+                  <li>Married with Belu.</li>
+                  <li>Father of Pili and Joaco.</li>
+                </ul>
+              <!-- </p> -->
+            </div>
+          </div>
+        
+      </div>
+      
+      
+      </main>
+      
+            
+      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+          <span class="mr-2 nombreFoto"><img class="img-thumbnail" src="/images/logo_mini.jpg" alt="" height="50" width="50"></span>
+          <a class="navbar-brand nombreFoto" href="#">Nicolás Cirio</a>
+          <a href="https://www.instagram.com/nicocirio/" class="mr-2"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.facebook.com/nicocirio" class="mr-2"><i class="fa fa-facebook"></i></a>
+          <a href="https://www.twitter.com/nicocirio" class="mr-2"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/nicol%C3%A1s-cirio-94966119/" class="mr-2"><i class="fa fa-linkedin"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="family.html">Family</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="studies.html">Studies</a>
+              </li>
+              <li class="nav-item">
+                <b><a class="nav-link" aria-current="page" href="hobbies.html">Hobbies</a></b>
+              </li>
+              <li class="nav-item dropup">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-bs-toggle="dropdown" aria-expanded="false">Other links</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown10">
+                  <li><a class="dropdown-item" href="https://getbootstrap.com/">Bootstrap</a></li>
+                  <li><a class="dropdown-item" href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+                  <li><a class="dropdown-item" href="https://fontawesome.com/">Font Awesome</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+      
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      
+      
+            
+        
+    </body>
+     
+</html>

@@ -1,0 +1,149 @@
+
+main{
+    height: 100%;
+    min-height: 100vh;
+}
+
+
+.listaMiniCv{
+    list-style-type: none;
+    padding: 0;
+}
+
+.fotoOculta{
+    z-index: 10000;
+    position: absolute;
+    width: auto;
+    left: 50%;
+    top:20%;
+    transform: translate(-50%, -20%);
+    visibility:hidden;
+    box-shadow: 5px 5px 5px black;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+
+}
+
+.mr-2 {
+    margin-right: .5rem !important;
+    
+}
+
+.imageCarousel{
+width: auto;
+ height: 350px;
+ max-height: 350px;
+ margin: auto; 
+ display: block;
+}   
+
+.imageCarouselCard{
+    width: auto;
+ height: 150px;
+ max-height: 150px;
+ margin: auto; 
+ display: block;
+}  
+
+
+
+
+
+/* para que se pueda hacer zoom in cuando estoy viendo el carrusel */
+.carousel.pointer-event {
+    touch-action: pan-y pinch-zoom;
+  }
+
+
+
+/* los siguientes 4 (hasta .imgCar) son para que el carrusel seleccionado se maximice */
+/* en la pantalla, que tenga un fondo semi transparente */
+/* y que las fotos se expandan a lo máximo posible respetando su relación de tamaño */
+/* hay que agregarlas por js al hacer click en algún carrusel en sus respectivas clases*/
+/* hay que sacar mt-2 de la div que tiene la clase "carousel", que es la primera div dentro de la clase "card"*/
+
+
+/* sumarlo al elemento que tien ´carousel´, que también ese elemento tiene el id del carrusel */
+.contGralCar{
+    z-index: 5000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height:100%;
+    width: 100%;
+    background-color: rgba(34, 33, 33, 0.9); 
+    max-width: 100%;
+    max-height: 100%;
+    display:block;
+
+
+}
+
+/* sumarlo al elemento que ya tiene la clase ´carousel-inner´ */
+.innerCar{
+
+    height: 100%;
+    width: 100%;
+
+}
+
+/* sumarlo al elemento que ya tiene la clase ´carousel-item´ */
+.itemCar{
+    /* border:indianred solid 6px; */
+    height: 100%;
+    
+}
+
+/* sumar esta clase al elemento que tiene el tag img (dentro del carrusel, no a todos)  */
+.imgCar{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 100%;
+    max-height: 100%;
+    display:block;
+
+    border: whitesmoke solid 5px;
+    border-radius: 2%;
+
+}
+
+
+
+
+.clickedImg{
+
+    z-index: 10;
+    
+   
+}
+
+a {
+    color: grey;
+}
+
+.tabla{
+    text-align: center;
+    height: 225px;
+    width: 225px;
+    margin:auto;
+    border: 5px solid red;
+}
+tr{
+    height: 75px;
+    border: 1px solid white;
+}
+td{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 25pt;
+    font-family: Georgia;
+    text-align: center;
+    width: 75px;
+
+}
